@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#43101f"/><stop offset="1" stop-color="#160307"/></linearGradient>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a7a22"/><stop offset=".5" stop-color="#fff3c4"/><stop offset="1" stop-color="#d4af37"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d4af37" stop-opacity=".25"/><stop offset="1" stop-color="#d4af37" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="600" cy="315" rx="560" ry="300" fill="url(#glow)"/>
+  <rect x="36" y="36" width="1128" height="558" fill="none" stroke="#d4af37" stroke-opacity=".5"/>
+  <rect x="48" y="48" width="1104" height="534" fill="none" stroke="#d4af37" stroke-opacity=".2"/>
+  <text x="600" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="22" letter-spacing="10" fill="#d4af37">NIKOH TO'YI TAKLIFNOMASI</text>
+  <text x="600" y="290" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="120" fill="url(#g)">Eldorjon</text>
+  <text x="600" y="340" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="44" fill="#d4af37">&amp;</text>
+  <text x="600" y="450" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="120" fill="url(#g)">Bonuxon</text>
+  <text x="600" y="530" text-anchor="middle" font-family="Georgia,serif" font-size="30" letter-spacing="8" fill="#f7f1e3">29 · 11 · 2026  ✦  16:00  ✦  «OQ SAROY»</text>
+</svg>
