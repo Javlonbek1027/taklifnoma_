@@ -38,6 +38,7 @@ Sahifaning "Taklifnomani ulashing" bo'limi buni avtomatik yaratadi va Telegram o
 - `index.html` — butun sahifa (CSS va JS ichida)
 - `music.m4a` — 10 soniyalik fon musiqasi, takrorlanadi (166 KB)
 - `og.png` / `og.svg` — Telegram/WhatsApp'da havola ko'rinishi uchun rasm
+- `img/oqsaroy-night.jpg`, `img/oqsaroy-day.jpg` — to'yxona rasmlari (Google Maps)
 - `vercel.json` — kesh va xavfsizlik sarlavhalari
 - `_old/index.old.html` — eski versiya (deploy qilinmaydi)
 - `music.mp4` — asl video (deploy qilinmaydi, `.vercelignore` ga kiritilgan)

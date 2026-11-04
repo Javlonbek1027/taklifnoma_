@@ -61,12 +61,27 @@ a{color:inherit;text-decoration:none}
   animation:bgDrift 28s ease-in-out infinite alternate;
 }
 .bg::after{
-  content:"";position:absolute;inset:0;opacity:.07;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23d4af37' stroke-width='1'%3E%3Cpath d='M60 10 L75 45 L110 60 L75 75 L60 110 L45 75 L10 60 L45 45 Z'/%3E%3Cpath d='M60 25 L70 50 L95 60 L70 70 L60 95 L50 70 L25 60 L50 50 Z'/%3E%3Cpath d='M0 0 L20 20 M120 0 L100 20 M0 120 L20 100 M120 120 L100 100'/%3E%3Ccircle cx='60' cy='60' r='4'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:120px 120px;
-  -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 85%);
-  mask-image:radial-gradient(ellipse at center,#000 30%,transparent 85%);
+  content:"";position:absolute;inset:0;opacity:.085;mix-blend-mode:screen;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .78 0 0 0 0 .45 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:320px 320px;
 }
+.bg .sheen{position:absolute;inset:-35%;pointer-events:none;
+  background:linear-gradient(118deg,transparent 28%,rgba(255,205,160,.04) 42%,rgba(150,30,65,.32) 50%,rgba(255,205,160,.04) 58%,transparent 72%);
+  animation:sheen 22s ease-in-out infinite alternate;mix-blend-mode:screen}
+@keyframes sheen{from{transform:translate3d(-12%,-6%,0) rotate(-2deg)}to{transform:translate3d(12%,6%,0) rotate(2deg)}}
+.bg .veins{position:absolute;inset:0;width:100%;height:100%;opacity:.3;filter:blur(.6px);animation:veinsDrift 40s ease-in-out infinite alternate}
+.bg .veins path{fill:none;stroke:url(#vg);stroke-linecap:round;stroke-dasharray:220 140;animation:veinFlow 30s linear infinite}
+.bg .veins path:nth-child(2){animation-duration:38s;animation-direction:reverse}
+.bg .veins path:nth-child(3){animation-duration:46s}
+.bg .veins path:nth-child(4){animation-duration:34s;animation-direction:reverse}
+.bg .veins path:nth-child(5){animation-duration:52s}
+@keyframes veinFlow{to{stroke-dashoffset:-1080}}
+@keyframes veinsDrift{from{transform:translate3d(-1.5%,0,0) scale(1.02)}to{transform:translate3d(1.5%,1%,0) scale(1.06)}}
+.bg .orb{position:absolute;border-radius:50%;filter:blur(38px);opacity:.55;pointer-events:none;mix-blend-mode:screen;animation:orb 26s ease-in-out infinite alternate}
+.bg .orb.o1{width:38vmax;height:38vmax;left:-12vmax;top:-10vmax;background:radial-gradient(circle,rgba(212,175,55,.22),transparent 65%)}
+.bg .orb.o2{width:30vmax;height:30vmax;right:-8vmax;top:30vh;background:radial-gradient(circle,rgba(200,60,100,.22),transparent 65%);animation-delay:-9s}
+.bg .orb.o3{width:34vmax;height:34vmax;left:20vw;bottom:-14vmax;background:radial-gradient(circle,rgba(212,175,55,.16),transparent 65%);animation-delay:-17s}
+@keyframes orb{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,-5vh,0) scale(1.15)}}
 @keyframes bgDrift{from{transform:translate3d(-2%,-1%,0) scale(1.02)}to{transform:translate3d(2%,1.5%,0) scale(1.06)}}
 #fx{position:fixed;inset:0;z-index:1;pointer-events:none}
 .vignette{position:fixed;inset:0;z-index:2;pointer-events:none;
@@ -354,6 +369,26 @@ body.opened .music{opacity:1;transform:none;pointer-events:auto}
 .intro-note{font-size:.6rem;color:var(--muted-2);letter-spacing:.14em;text-transform:uppercase}
 
 
+/* ============ VENUE ARCH WINDOW ============ */
+.arch{position:relative;width:min(100%,320px);aspect-ratio:3/4;margin:26px auto clamp(18px,4vw,26px);filter:drop-shadow(0 24px 40px rgba(0,0,0,.6))}
+.arch-in{position:absolute;inset:0;clip-path:url(#archClip);overflow:hidden;background:#2a0710}
+.arch .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:kb 16s ease-in-out infinite alternate;will-change:transform}
+.arch .ph.b{opacity:0;animation:kb 16s ease-in-out infinite alternate,xfade 16s ease-in-out infinite}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.14)}}
+@keyframes xfade{0%,42%{opacity:0}52%,90%{opacity:1}100%{opacity:0}}
+.arch-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,3,7,.25) 0%,transparent 30%,transparent 60%,rgba(22,3,7,.75) 100%),
+  radial-gradient(80% 60% at 50% 50%,transparent 60%,rgba(22,3,7,.35))}
+.arch-frame{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);pointer-events:none;overflow:visible}
+.arch-frame path{fill:none;stroke:url(#gg);vector-effect:non-scaling-stroke}
+.arch-frame .f1{stroke-width:1.6}
+.arch-frame .f2{stroke-width:.8;opacity:.6}
+.arch-caption{position:absolute;left:0;right:0;bottom:12px;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(.85rem,2.6vw,1rem);color:var(--gold-l);letter-spacing:.06em;text-shadow:0 2px 8px rgba(0,0,0,.8)}
+.arch-caption b{display:block;font-style:normal;font-weight:600;font-size:1.25em;letter-spacing:.14em;text-transform:uppercase}
+.arch-glow{position:absolute;inset:0;clip-path:url(#archClip);background:radial-gradient(50% 30% at 50% 70%,rgba(212,175,55,.28),transparent 70%);
+  mix-blend-mode:screen;animation:archGlow 3.4s ease-in-out infinite}
+@keyframes archGlow{0%,100%{opacity:.5}50%{opacity:1}}
+.arch-lamp{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:28px;height:28px;color:var(--gold);filter:drop-shadow(0 0 8px rgba(212,175,55,.8))}
+
 /* ============ EXTRA MOTION ============ */
 /* script names: pen-wipe reveal */
 .names .n{-webkit-mask-image:linear-gradient(90deg,#000 0 45%,transparent 55% 100%);mask-image:linear-gradient(90deg,#000 0 45%,transparent 55% 100%);
@@ -392,6 +427,8 @@ body.opened .hero-date::after{transform:scaleX(1)}
   .reveal,.reveal [data-stagger]{opacity:1;transform:none}
   .hero [data-in]{opacity:1;transform:none;filter:none}
   .names .n{-webkit-mask-image:none;mask-image:none}
+  .arch .ph.b{display:none}
+  .bg .veins,.bg .orb,.bg .sheen{animation:none}
   .ch,.cal-g .c{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
@@ -404,7 +441,18 @@ body.opened .hero-date::after{transform:scaleX(1)}
 </head>
 <body class="locked">
 
-<div class="bg" aria-hidden="true"></div>
+<div class="bg" aria-hidden="true">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div class="sheen"></div>
+  <svg class="veins" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="vg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9a7a22" stop-opacity=".2"/><stop offset=".5" stop-color="#f6e7b4"/><stop offset="1" stop-color="#d4af37" stop-opacity=".25"/></linearGradient></defs>
+    <path stroke-width="1.2" d="M-50 180 C150 120 220 330 420 260 S700 80 820 210 S1000 380 1080 300"/>
+    <path stroke-width=".8" d="M-40 620 C120 540 260 760 420 680 S640 500 780 640 S960 820 1060 700"/>
+    <path stroke-width="1" d="M80 -40 C40 160 220 240 180 420 S60 700 200 860 S360 1000 300 1080"/>
+    <path stroke-width=".7" d="M900 -60 C820 120 980 260 880 420 S700 640 820 800 S980 980 920 1080"/>
+    <path stroke-width=".9" d="M-60 900 C160 860 300 980 520 900 S800 760 1060 880"/>
+  </svg>
+</div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <div class="vignette" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -426,6 +474,7 @@ body.opened .hero-date::after{transform:scaleX(1)}
       <path d="M12 1l2.6 6.4L21 5l-2.4 6.4L24 12l-5.4 .6L21 19l-6.4-2.4L12 23l-2.6-6.4L3 19l2.4-6.4L0 12l5.4-.6L3 5l6.4 2.4z" fill="currentColor"/>
       <circle cx="12" cy="12" r="2.2" fill="#160307"/>
     </symbol>
+    <clipPath id="archClip" clipPathUnits="objectBoundingBox"><path d="M0 1V.34C0 .16.2.04.5 0 .8.04 1 .16 1 .34V1Z"/></clipPath>
     <symbol id="ring" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width=".8" stroke-dasharray="2 5" opacity=".9"/>
       <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width=".5" opacity=".5"/>
@@ -571,10 +620,21 @@ body.opened .hero-date::after{transform:scaleX(1)}
       <section class="card reveal" id="venue">
         <svg class="corner tl"><use href="#corner"/></svg><svg class="corner tr"><use href="#corner"/></svg>
         <svg class="corner bl"><use href="#corner"/></svg><svg class="corner br"><use href="#corner"/></svg>
-        <div class="pin" data-stagger>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg>
-        </div>
         <span class="eyebrow" data-stagger>Manzilimiz</span>
+        <div class="arch" data-stagger>
+          <div class="arch-in">
+            <img class="ph a" src="img/oqsaroy-night.jpg" alt="OQ SAROY to'yxonasi kechqurun, oltin chiroqli arka" loading="lazy" decoding="async">
+            <img class="ph b" src="img/oqsaroy-day.jpg" alt="OQ SAROY to'yxonasi kunduzi" loading="lazy" decoding="async">
+            <div class="arch-shade"></div>
+            <div class="arch-glow"></div>
+            <div class="arch-caption">Sizni shu yerda kutamiz<b>OQ SAROY</b></div>
+          </div>
+          <svg class="arch-frame" viewBox="0 0 1 1" preserveAspectRatio="none" aria-hidden="true">
+            <path class="f1" d="M0 1V.34C0 .16.2.04.5 0 .8.04 1 .16 1 .34V1Z"/>
+            <path class="f2" d="M.03 1V.36C.03 .2.22.07.5 .035 .78.07.97.2.97.36V1"/>
+          </svg>
+          <svg class="arch-lamp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#star8"/></svg>
+        </div>
         <h3 class="venue-name gold" data-stagger>«OQ SAROY» to'yxonasi</h3>
         <p class="venue-addr" data-stagger>Jizzax viloyati, G'allaorol tumani,<br>Sarbazor MFY</p>
 
